@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Builder ✦</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ============ BUILDER SCREEN ============ -->
+    <div class="screen is-active" id="builder-screen">
+      <div class="builder-layout">
+        <div class="builder-left">
+          <header class="builder-header">
+            <div class="logo-mark">✦ ✦ ✦</div>
+            <h1>Build a<br /><em>personal card</em></h1>
+            <p class="subtitle">A tiny game unlocks your message</p>
+          </header>
+
+          <section class="field-group">
+            <label class="field-label">To</label>
+            <input
+              type="text"
+              id="recipient-input"
+              class="field-input"
+              placeholder="Recipient's name"
+            />
+          </section>
+
+          <section class="field-group">
+            <label class="field-label">From</label>
+            <input
+              type="text"
+              id="sender-input"
+              class="field-input"
+              placeholder="Your name"
+            />
+          </section>
+
+          <section class="field-group">
+            <label class="field-label">Message</label>
+            <textarea
+              id="message-input"
+              class="field-input field-textarea"
+              placeholder="Write something heartfelt…"
+            ></textarea>
+            <div class="helper-toggle" id="helper-toggle">
+              ✨ Write me a draft
+            </div>
+          </section>
+
+          <div class="message-helper" id="message-helper">
+            <div class="helper-inner">
+              <p class="helper-title">Message helper</p>
+              <div class="tone-row">
+                <button class="tone-btn is-active" data-tone="sweet">
+                  Sweet
+                </button>
+                <button class="tone-btn" data-tone="funny">Funny</button>
+                <button class="tone-btn" data-tone="emotional">
+                  Emotional
+                </button>
+                <button class="tone-btn" data-tone="proud">Proud</button>
+                <button class="tone-btn" data-tone="chaotic">Chaotic</button>
+              </div>
+              <textarea
+                id="helper-detail"
+                class="field-input helper-detail-input"
+                placeholder="Add a memory or detail (optional)…"
+              ></textarea>
+              <button class="helper-generate-btn" id="helper-generate">
+                Generate draft ✨
+              </button>
+            </div>
+          </div>
+
+          <section class="field-group">
+            <label class="field-label">Choose a mini game</label>
+            <div class="game-picker" id="game-picker"></div>
+          </section>
+
+          <div class="validation-errors" id="validation-errors"></div>
+          <button class="create-btn" id="create-btn">Create Card →</button>
+        </div>
+
+        <div class="builder-right">
+          <div class="live-preview" id="live-preview">
+            <div class="preview-tag">Live preview</div>
+            <div class="preview-for">
+              For <span id="prev-recipient">someone special</span>
+            </div>
+            <div class="preview-dear">
+              Dear <span id="prev-recipient2">someone special</span>,
+            </div>
+            <div class="preview-message" id="prev-message">
+              Your message will appear here as you write.
+            </div>
+            <div class="preview-sig">— <span id="prev-sender">you</span></div>
+            <div class="preview-game-label">
+              Unlocks after: <span id="prev-game">Balloon Pop 🎈</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PREVIEW / INTRO SCREEN ============ -->
+    <div class="screen" id="preview-screen">
+      <div class="center-screen">
+        <div class="preview-envelope">✉️</div>
+        <div class="ornament">✦ · · · ✦</div>
+        <h2 class="preview-heading">
+          A card for <span id="intro-recipient"></span>
+        </h2>
+        <p class="preview-from">from <strong id="intro-sender"></strong></p>
+        <div class="ornament" style="margin: 16px 0 24px">✦ · · · ✦</div>
+        <p class="preview-hint">
+          Play one little challenge to unlock your message.
+        </p>
+        <div class="game-info-card" id="intro-game-card"></div>
+        <button class="primary-btn" id="start-game-btn">Let's play</button>
+      </div>
+    </div>
+
+    <!-- ============ GAME SCREEN ============ -->
+    <div class="screen" id="game-screen">
+      <div class="game-header">
+        <div class="game-title-area" id="game-title-area"></div>
+      </div>
+      <div class="game-container" id="game-container"></div>
+    </div>
+
+    <!-- ============ UNLOCK SCREEN ============ -->
+    <div class="screen" id="unlock-screen">
+      <div class="center-screen">
+        <div class="unlock-burst">
+          <div class="burst-ring"></div>
+          <div class="burst-ring"></div>
+          <div class="burst-star">✦</div>
+        </div>
+        <div class="ornament">✦ · · · ✦</div>
+        <h2 class="unlock-heading">You unlocked your message</h2>
+        <p class="unlock-sub">Beautiful. Now open it.</p>
+        <button class="primary-btn" id="open-letter-btn">
+          Open my message
+        </button>
+      </div>
+    </div>
+
+    <!-- ============ LETTER SCREEN ============ -->
+    <div class="screen" id="letter-screen">
+      <div class="letter-wrap">
+        <div class="letter-paper">
+          <div class="letter-ornament">✦ · · · ✦</div>
+          <p class="letter-dear">Dear <span id="letter-recipient"></span>,</p>
+          <p class="letter-body" id="letter-body"></p>
+          <p class="letter-sig">— <span id="letter-sender"></span></p>
+          <div class="letter-footer">✦ · · · ✦</div>
+        </div>
+        <button class="primary-btn" id="letter-continue-btn">Continue</button>
+      </div>
+    </div>
+
+    <!-- ============ ENDING SCREEN ============ -->
+    <div class="screen" id="ending-screen">
+      <div class="center-screen">
+        <div class="ending-mark">✦ ✦ ✦</div>
+        <h2 class="ending-heading">That was lovely.</h2>
+        <p class="ending-sub">with love &amp; confetti</p>
+        <div class="ending-actions">
+          <button class="end-btn" id="read-again-btn">Read again</button>
+          <button class="end-btn" id="play-again-btn">Play again</button>
+          <button class="end-btn is-primary" id="new-card-btn">
+            Create another card
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="messageHelper.js"></script>
+    <script src="balloonsGame.js"></script>
+    <script src="futureBagGame.js"></script>
+    <script src="quizGame.js"></script>
+    <script src="memoriesGame.js"></script>
+    <script src="timelineDashGame.js"></script>
+    <script src="complimentCollectorGame.js"></script>
+    <script src="gameRegistry.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
