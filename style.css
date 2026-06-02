@@ -1447,3 +1447,21 @@ body::before {
     padding: 20px 20px 0;
   }
 }
+
+/* Back / edit link */
+.back-link {
+  margin-top: 16px;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-low);
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+  padding: 4px 0;
+  display: block;
+}
+.back-link:hover {
+  color: var(--gold);
+}

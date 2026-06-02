@@ -177,6 +177,9 @@ function bindPreviewScreen() {
     startSelectedGame();
     showScreen("game");
   });
+  document.getElementById("edit-card-btn").addEventListener("click", () => {
+    showScreen("builder");
+  });
 }
 
 // ---- START GAME ----
